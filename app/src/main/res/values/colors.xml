@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#121212</color>
+    <color name="fg">#333</color>
+    <color name="icon_tint">#fff</color>
+    <color name="button_text">#fff</color>
+</resources>

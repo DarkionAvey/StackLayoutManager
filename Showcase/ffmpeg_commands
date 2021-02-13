@@ -1,0 +1,8 @@
+ffmpeg -i input.mp4 -ss 00:00:03 -t 00:00:06.13 trimmed.mp4
+
+ffmpeg -i trimmed.mp4 -filter:v "crop=1080:1280:0:630" cropped.mp4
+
+ffmpeg -i cropped.mp4 -vf "pad=width=2200:height=1280:x=1120:y=0:color=#ffffff" padded.mp4
+
+ffmpeg -i padded.mp4 -i overlay.png -filter_complex "overlay=0:0" cover.mp4
+

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.89" />
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/header_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/landscape"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:drawableTop="@drawable/ic_arrows"
+        android:drawableTint="@color/icon_tint"
+        android:fontFamily="@font/poppins_medium"
+        android:singleLine="true"
+        android:text="Mode"
+        android:textAllCaps="false"
+        android:textColor="@color/button_text"
+        app:layout_constraintEnd_toStartOf="@+id/attention"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/attention" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/attention"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
+        android:drawableTop="@drawable/ic_eye"
+        android:drawableTint="@color/icon_tint"
+        android:fontFamily="@font/poppins_medium"
+        android:singleLine="true"
+        android:text="Peek"
+        android:textAllCaps="false"
+        android:textColor="@color/button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/snap"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/landscape"
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/snap"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
+        android:drawableTop="@drawable/ic_magnet"
+        android:drawableTint="@color/icon_tint"
+        android:fontFamily="@font/poppins_medium"
+        android:singleLine="true"
+        android:text="Snap"
+        android:textAllCaps="false"
+        android:textColor="@color/button_text"
+        app:layout_constraintEnd_toStartOf="@id/interpolator"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/attention"
+        app:layout_constraintTop_toTopOf="@+id/attention" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/interpolator"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
+        android:drawableTop="@drawable/ic_curve_www_wishforge_games"
+        android:drawableTint="@color/icon_tint"
+        android:fontFamily="@font/poppins_medium"
+        android:singleLine="true"
+        android:text="Path"
+        android:textAllCaps="false"
+        android:textColor="@color/button_text"
+        app:layout_constraintEnd_toStartOf="@+id/transformer"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/snap"
+        app:layout_constraintTop_toTopOf="@+id/attention" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/transformer"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:drawableTop="@drawable/ic_scale_royyan_wijaya"
+        android:drawableTint="@color/icon_tint"
+        android:fontFamily="@font/poppins_medium"
+        android:singleLine="true"
+        android:text="Transform"
+        android:textAllCaps="false"
+        android:textColor="@color/button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/interpolator"
+        app:layout_constraintTop_toTopOf="@+id/attention" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/size_square"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/circle_bg"
+        android:scaleType="center"
+        android:tint="#bbb"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_crop_square_24" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/size_fullscreen"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/circle_bg"
+        android:scaleType="center"
+        android:tint="#bbb"
+        app:layout_constraintBottom_toBottomOf="@+id/size_square"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@+id/size_square"
+        app:layout_constraintTop_toTopOf="@+id/size_square"
+        app:srcCompat="@drawable/ic_baseline_aspect_ratio_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<net.darkion.stacklayoutmanager.demo.Card xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="24dp"
+    android:background="@drawable/card_bg">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/thumb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000"
+        android:scaleType="centerCrop" />
+
+    <net.darkion.stacklayoutmanager.demo.DoubleTextView
+        android:id="@+id/position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="35dp"
+        android:gravity="center"
+        android:textColor="#000"
+        android:textSize="45sp"
+        app:fontFamily="@font/share_tech_mono"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="01" />
+
+</net.darkion.stacklayoutmanager.demo.Card>
