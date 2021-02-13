@@ -6,3 +6,4 @@ ffmpeg -i cropped.mp4 -vf "pad=width=2200:height=1280:x=1120:y=0:color=#ffffff" 
 
 ffmpeg -i padded.mp4 -i overlay.png -filter_complex "overlay=0:0" cover.mp4
 
+ffmpeg -i input.mp4 -vcodec libwebp -lossless 1 -loop 0 -preset default output.webp
