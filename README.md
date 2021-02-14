@@ -9,17 +9,16 @@ StackLayoutManager is a lightweight and highly-customizable layout manager for R
 StackLayoutManager is a single Kotlin file, so you just need to copy the [`StackLayoutManager.kt`](https://raw.githubusercontent.com/DarkionAvey/StackLayoutManager/master/stacklayoutmanager/src/main/java/net/darkion/stacklayoutmanager/library/StackLayoutManager.kt) file to your project and change the `package` declaration. That's it!
 
 # Showcase
+
 ## Interpolators
-
-|![Default](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/default_interpolator.webp?raw=true)Default|![DenseStackInterpolator](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/dense_interpolator.webp?raw=true)[`DenseStackInterpolator.kt`](https://github.com/DarkionAvey/StackLayoutManager/blob/master/app/src/main/java/net/darkion/stacklayoutmanager/demo/layoutinterpolators/DenseStackInterpolator.kt)|![LinearInterpolator](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/linear_interpolator.webp?raw=true)`LinearInterpolator`|![LogDecelerateInterpolator](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/log_decelerate_60_interpolator.webp?raw=true)[`LogDecelerateInterpolator.java`](https://github.com/DarkionAvey/StackLayoutManager/blob/master/app/src/main/java/net/darkion/stacklayoutmanager/demo/layoutinterpolators/LogDecelerateInterpolator.java)|
-|:--: | :--: | :--: | :--: |
-
+|![Default/LogDecelerateInterpolator](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/log_decelerate_60_interpolator.webp?raw=true)Default|![DenseStackInterpolator](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/dense_interpolator.webp?raw=true)[`DenseStackInterpolator.kt`](https://github.com/DarkionAvey/StackLayoutManager/blob/master/app/src/main/java/net/darkion/stacklayoutmanager/demo/layoutinterpolators/DenseStackInterpolator.kt)|![LinearInterpolator](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/linear_interpolator.webp?raw=true)`LinearInterpolator`|
+| :--: | :--: | :--: |
 |![OvershootingInterpolator](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/overshooting_interpolator.webp?raw=true)[`OvershootingInterpolator.kt`](https://github.com/DarkionAvey/StackLayoutManager/blob/master/app/src/main/java/net/darkion/stacklayoutmanager/demo/layoutinterpolators/OvershootingInterpolator.kt)|![ReverseStackInterpolator](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/reverse_interpolator.webp?raw=true)[`ReverseStackInterpolator.kt`](https://github.com/DarkionAvey/StackLayoutManager/blob/master/app/src/main/java/net/darkion/stacklayoutmanager/demo/layoutinterpolators/ReverseStackInterpolator.kt) |![CappedLinearInterpolator](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/capped_linear_interpolator.webp?raw=true)[`CappedLinearInterpolator.kt`](https://github.com/DarkionAvey/StackLayoutManager/blob/master/app/src/main/java/net/darkion/stacklayoutmanager/demo/layoutinterpolators/CappedLinearInterpolator.kt)|
-|:--: | :--: | :--: |
+
 
 ## Transformers
 |![ScaleInOnlyTransformer](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/scale_in_transform.webp?raw=true)[`ScaleInOnlyTransformer.kt`](https://github.com/DarkionAvey/StackLayoutManager/blob/master/app/src/main/java/net/darkion/stacklayoutmanager/demo/transformers/ScaleInOnlyTransformer.kt)|![ScaleOutOnlyTransformer](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/nice_combo_capped_scale_out.webp?raw=true)[`ScaleOutOnlyTransformer.kt`](https://github.com/DarkionAvey/StackLayoutManager/blob/master/app/src/main/java/net/darkion/stacklayoutmanager/demo/transformers/ScaleOutOnlyTransformer.kt)|![ScaleTransformer](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/scale_in_out.webp?raw=true)[`ScaleTransformer.kt`](https://github.com/DarkionAvey/StackLayoutManager/blob/master/app/src/main/java/net/darkion/stacklayoutmanager/demo/transformers/ScaleTransformer.kt)|![RotationTransformer](https://github.com/DarkionAvey/StackLayoutManager/blob/master/Showcase/gifs/3d_transform.webp?raw=true)[`RotationTransformer.kt`](https://github.com/DarkionAvey/StackLayoutManager/blob/master/app/src/main/java/net/darkion/stacklayoutmanager/demo/transformers/RotationTransformer.kt)|
-|:--: | :--: | :--: | :--: |
+| :--: | :--: | :--: | :--: |
 
 
 # Setup
