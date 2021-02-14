@@ -30,7 +30,7 @@ By default, StackLayoutManager will layout views horizontally and will center th
 
 
 | Parameter  | Type | Default | Discription | 
-|:--- | :---: | :---: | :--- | 
+|:---: | :-: | :-: | :--- | 
 | `horizontalLayout`  | Boolean | `true`  | whether views should be laid out horizontally or vertically|
 | `centerFirstItem`  | Boolean | `true`  | whether first item (with `position == 0`) should be centered. In some instances, specially when using Log interpolators, setting this to false will position the first child off-screen which could be confusing to users |
 | `scrollMultiplier`  | Float | `2f`  | the number of items (as float, where each item is equal to `1f`) that should be scrolled in one swipe. Setting higher values will cause stuttering because of float rounding. Even though the default value is 2f, it is recommended that you set this to `1.2f` |
