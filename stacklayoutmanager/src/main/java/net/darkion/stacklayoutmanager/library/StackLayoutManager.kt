@@ -20,14 +20,14 @@ import androidx.recyclerview.widget.RecyclerView.Recycler
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
-
+//visit https://github.com/DarkionAvey/StackLayoutManager for more info
 class StackLayoutManager(
     //toggle between horizontal and vertical modes
     horizontalLayout: Boolean = true,
     //should first item be centered?
     val centerFirstItem: Boolean = true,
     //how many items should be scrolled in one edge-to-edge swipe
-    val scrollMultiplier: Float = 2f,
+    val scrollMultiplier: Float = 1.2f,
     // the max number of children the recyclerview should have
     val maxViews: Int = 6,
     //interpolator for laying out views
@@ -48,9 +48,7 @@ class StackLayoutManager(
             requestSimpleAnimationsInNextLayout()
             field = value
             requestLayout()
-
         }
-
     var layoutInterpolator = layoutInterpolator
         set(value) {
             field = value
@@ -63,8 +61,8 @@ class StackLayoutManager(
     private val marginsRect = Rect()
     private val tmpRect = Rect()
     private var scrollAnimator: ValueAnimator? = null
-    private val stackAlgorithm: StackLayoutManager.LayoutAlgorithm
-    private val scroller: StackScroller
+    private val stackAlgorithm: StackLayoutManager.LayoutAlgorithm = LayoutAlgorithm()
+    private val scroller: StackScroller = StackScroller()
     private var decoratedChildHeight = -1
     private val firstItemPosition: Int
         get() = kotlin.math.max(
@@ -76,7 +74,6 @@ class StackLayoutManager(
             maxViews,
             itemCount
         ) else kotlin.math.min(itemCount, currentItem + maxViews / 2)
-
 
     var horizontalLayout: Boolean = horizontalLayout
         set(value) {
@@ -106,12 +103,6 @@ class StackLayoutManager(
             ), itemCount
         )
 
-
-    init {
-        stackAlgorithm = LayoutAlgorithm()
-        scroller = StackScroller()
-    }
-
     override fun isSmoothScrolling(): Boolean {
         return super.isSmoothScrolling() || scrollAnimator != null && scrollAnimator!!.isRunning
     }
@@ -139,7 +130,6 @@ class StackLayoutManager(
     override fun canScrollHorizontally(): Boolean {
         return itemCount != 0 && horizontalLayout
     }
-
 
     private fun scroll(
         thisMuch: Float,
@@ -212,7 +202,6 @@ class StackLayoutManager(
         }
     }
 
-
     override fun onMeasure(
         recycler: Recycler,
         state: RecyclerView.State,
@@ -269,7 +258,6 @@ class StackLayoutManager(
         bindVisibleViews(recycler, state)
     }
 
-
     override fun onAdapterChanged(
         oldAdapter: RecyclerView.Adapter<*>?,
         newAdapter: RecyclerView.Adapter<*>?
@@ -298,7 +286,6 @@ class StackLayoutManager(
         return false
     }
 
-
     private fun bindVisibleViews(recycler: Recycler, state: RecyclerView.State) {
         val currentLowerLimit = firstItemPosition
         val currentUpperLimit = lastVisibleItemPosition
@@ -324,7 +311,6 @@ class StackLayoutManager(
         }
 
     }
-
 
     override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
         return lp is StackLayoutParams
@@ -445,7 +431,6 @@ class StackLayoutManager(
         }
     }
 
-
     object ElevationTransformer {
         private fun mapRange(value: Float, min: Float, max: Float): Float {
             return min + value * (max - min)
@@ -488,7 +473,6 @@ class StackLayoutManager(
         var stackScroll = 0f
             internal set
 
-
         fun boundScroll() {
             val curScroll = stackScroll
             val newScroll = getBoundedStackScroll(curScroll)
@@ -518,7 +502,6 @@ class StackLayoutManager(
             get() = getScrollAmountOutOfBounds(stackScroll).compareTo(0f) != 0
 
     }
-
 
     fun findFirstVisibleItemPosition(): Int {
         val child = findOneVisibleChild(0, childCount, false)
@@ -685,7 +668,5 @@ class StackLayoutManager(
         fun clamp01(value: Float): Float {
             return kotlin.math.max(0f, kotlin.math.min(1f, value))
         }
-
     }
-
 }
