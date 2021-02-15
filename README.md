@@ -7,6 +7,8 @@
 # StackLayoutManager
 StackLayoutManager is a lightweight and highly-customizable layout manager for RecyclerView which lays out views by using a [`TimeInterpolator`](https://developer.android.com/reference/android/animation/TimeInterpolator) object. This makes the views travel along the path that the interpolator provides, thus allowing us to create sophisticated transitions. Additionally, it supports setting a custom view transformation callback, which allows more elaborate transitions to be made through direct access to all transformation properties a view can have.
 
+![rep size](https://img.shields.io/github/repo-size/DarkionAvey/StackLayoutManager)
+
 # Demo app
 You can download the demo APK from [here](https://github.com/DarkionAvey/StackLayoutManager/releases/download/v1/app-release.apk)
 
