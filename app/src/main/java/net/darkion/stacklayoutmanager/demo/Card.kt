@@ -23,9 +23,14 @@ class Card @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val smallerSpec: Int? = if (MainActivity.squareItems) {
+            val width = MeasureSpec.getSize(widthMeasureSpec)
+            val height = MeasureSpec.getSize(heightMeasureSpec)
+            if (width < height) widthMeasureSpec else heightMeasureSpec
+        } else null
         super.onMeasure(
-            widthMeasureSpec,
-            if (MainActivity.squareItems) widthMeasureSpec else heightMeasureSpec
+            smallerSpec ?: widthMeasureSpec,
+            smallerSpec ?: heightMeasureSpec
         )
     }
 

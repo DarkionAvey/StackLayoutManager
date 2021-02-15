@@ -14,11 +14,6 @@ class ReverseStackInterpolator : LinearInterpolator() {
         lineTo(1f, 0.95f)
         lineTo(2f, 3f)
     })
-    val path2 = FreePathInterpolator(Path().apply {
-        moveTo(0f, 1f)
-        lineTo(1f, 2f)
-    })
-    val logDecelerateInterpolator = LogAccelerateInterpolator(40, 0)
 
     object Transformer {
         private val maxTranslationZ by lazy {

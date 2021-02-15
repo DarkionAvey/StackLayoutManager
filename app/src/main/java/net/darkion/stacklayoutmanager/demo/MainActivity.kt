@@ -32,7 +32,10 @@ class MainActivity : AppCompatActivity() {
     companion object {
         //this flag is used to hide UI elements
         //for screen recording purposes
-        const val showcaseMode = false
+        const val showcaseMode = true
+
+        //this flag toggles the views' height
+        //between match width and match parent
         var squareItems = true
     }
 
@@ -46,9 +49,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
     private val recyclerView by lazy {
-        findViewById<RecyclerView>(R.id.recyclerView).also {
-            it.setLayerType(View.LAYER_TYPE_HARDWARE, null)
-        }
+        findViewById<RecyclerView>(R.id.recyclerView)
     }
     private val snapHelper = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
