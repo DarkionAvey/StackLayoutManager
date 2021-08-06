@@ -1,5 +1,6 @@
 package net.darkion.stacklayoutmanager.demo
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.net.ConnectivityManager
@@ -18,12 +19,12 @@ import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.google.android.material.snackbar.Snackbar
-import net.darkion.stacklayoutmanager.demo.layoutinterpolators.*
-import net.darkion.stacklayoutmanager.demo.transformers.RotationTransformer
-import net.darkion.stacklayoutmanager.demo.transformers.ScaleInOnlyTransformer
-import net.darkion.stacklayoutmanager.demo.transformers.ScaleOutOnlyTransformer
-import net.darkion.stacklayoutmanager.demo.transformers.ScaleTransformer
-import net.darkion.stacklayoutmanager.library.StackLayoutManager
+import library.StackLayoutManager
+import library.stacklayoutmanager.extras.layoutinterpolators.*
+import library.stacklayoutmanager.extras.transformers.RotationTransformer
+import library.stacklayoutmanager.extras.transformers.ScaleInOnlyTransformer
+import library.stacklayoutmanager.extras.transformers.ScaleOutOnlyTransformer
+import library.stacklayoutmanager.extras.transformers.ScaleTransformer
 
 
 @Suppress("ConstantConditionIf")
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         //this flag is used to hide UI elements
         //for screen recording purposes
-        const val showcaseMode = true
+        const val showcaseMode = false
 
         //this flag toggles the views' height
         //between match width and match parent
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity() {
     }
     private var currentTransformer = 0
 
+    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -99,14 +101,12 @@ class MainActivity : AppCompatActivity() {
         findViewById<View>(R.id.recyclerView).layoutParams.height = -1
         findViewById<View>(R.id.container).setBackgroundColor(Color.WHITE)
 
-        window.decorView.setSystemUiVisibility(
-            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        )
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
     }
 
     private fun changeItemsSize(square: Boolean) {
@@ -160,8 +160,9 @@ class MainActivity : AppCompatActivity() {
                 //ReverseStackInterpolator uses its own transformer
                 //to allow most recent views (higher position) to be stacked underneath
                 //current view by reversing the translationZ property
-                stackLayoutManager.viewTransformer = ReverseStackInterpolator.Transformer::transform
-            } else if (stackLayoutManager.viewTransformer == ReverseStackInterpolator.Transformer::transform) {
+                stackLayoutManager.viewTransformer =
+                    ReverseStackInterpolator.ReverseStackTransformer::transform
+            } else if (stackLayoutManager.viewTransformer == ReverseStackInterpolator.ReverseStackTransformer::transform) {
                 //if ReverseStackInterpolator transformer was previously set, revert to the last used
                 //transformer
                 stackLayoutManager.viewTransformer =
@@ -318,7 +319,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //simple internet check
-    fun isConnected(): Boolean {
+    private fun isConnected(): Boolean {
         val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return cm.activeNetwork != null

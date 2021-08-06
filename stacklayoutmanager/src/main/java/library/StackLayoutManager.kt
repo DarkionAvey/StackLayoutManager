@@ -1,4 +1,4 @@
-package net.darkion.stacklayoutmanager.library
+package library
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -17,10 +17,15 @@ import android.view.animation.LinearInterpolator
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Recycler
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
-//visit https://github.com/DarkionAvey/StackLayoutManager for more info
+/**
+ * A lightweight and highly-customizable, interpolator-based layout manager for RecyclerView
+ * visit https://github.com/DarkionAvey/StackLayoutManager for more info
+ */
 class StackLayoutManager(
     //toggle between horizontal and vertical modes
     horizontalLayout: Boolean = true,
@@ -61,19 +66,19 @@ class StackLayoutManager(
     private val marginsRect = Rect()
     private val tmpRect = Rect()
     private var scrollAnimator: ValueAnimator? = null
-    private val stackAlgorithm: StackLayoutManager.LayoutAlgorithm = LayoutAlgorithm()
+    private val stackAlgorithm: LayoutAlgorithm = LayoutAlgorithm()
     private val scroller: StackScroller = StackScroller()
     private var decoratedChildHeight = -1
     private val firstItemPosition: Int
-        get() = kotlin.math.max(
+        get() = max(
             0,
-            kotlin.math.min(itemCount - maxViews, currentItem - maxViews / 2)
+            min(itemCount - maxViews, currentItem - maxViews / 2)
         )
     private val lastVisibleItemPosition: Int
-        get() = if (firstItemPosition == 0) kotlin.math.min(
+        get() = if (firstItemPosition == 0) min(
             maxViews,
             itemCount
-        ) else kotlin.math.min(itemCount, currentItem + maxViews / 2)
+        ) else min(itemCount, currentItem + maxViews / 2)
 
     var horizontalLayout: Boolean = horizontalLayout
         set(value) {
@@ -94,8 +99,8 @@ class StackLayoutManager(
 
     //return currently focused item
     val currentItem: Int
-        get() = kotlin.math.min(
-            kotlin.math.max(
+        get() = min(
+            max(
                 0,
                 kotlin.math.floor(
                     scroller.stackScroll.toDouble()
@@ -354,7 +359,7 @@ class StackLayoutManager(
             }
             val launchIndex = upperLimit - 1
             mMinScrollP = 0f
-            mMaxScrollP = kotlin.math.max(
+            mMaxScrollP = max(
                 mMinScrollP, upperLimit - 1f
             )
             mInitialScrollP = Internal.clamp(
@@ -408,7 +413,14 @@ class StackLayoutManager(
                 tmpRect.offset(displacement, 0)
             }
 
-            view.setLeftTopRightBottom(tmpRect.left, tmpRect.top, tmpRect.right, tmpRect.bottom)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                view.setLeftTopRightBottom(tmpRect.left, tmpRect.top, tmpRect.right, tmpRect.bottom)
+            } else {
+                view.left = tmpRect.left
+                view.top = tmpRect.top
+                view.right = tmpRect.right
+                view.bottom = tmpRect.bottom
+            }
 
             view.getStackLayoutParams().dimAmount =
                 if (scroll <= position) 0f
@@ -455,9 +467,9 @@ class StackLayoutManager(
             if (Build.VERSION.SDK_INT < 21) return
             ViewCompat.setTranslationZ(
                 view, mapRange(
-                    kotlin.math.max(
+                    max(
                         0f,
-                        kotlin.math.min(
+                        min(
                             1f,
                             stackLayoutManager.layoutInterpolator.getInterpolation(x)
                         )
@@ -598,7 +610,7 @@ class StackLayoutManager(
     fun peek() {
         stopScrolling()
         val out =
-            animateScrollToItem(scroller.stackScroll + 0.6f, Runnable {
+            animateScrollToItem(scroller.stackScroll + 0.6f) {
                 val `in` = animateScrollToItem(
                     scroller.stackScroll - 0.6f,
                     stopScrollingRunnable
@@ -607,7 +619,7 @@ class StackLayoutManager(
                 `in`.duration = 400
                 `in`.startDelay = 50
                 `in`.start()
-            })
+            }
         out.interpolator = Internal.SCROLL_INTERPOLATOR
         out.duration = 300
         out.start()
@@ -662,11 +674,11 @@ class StackLayoutManager(
         }
 
         fun clamp(value: Float, min: Float, max: Float): Float {
-            return kotlin.math.max(min, kotlin.math.min(max, value))
+            return max(min, min(max, value))
         }
 
         fun clamp01(value: Float): Float {
-            return kotlin.math.max(0f, kotlin.math.min(1f, value))
+            return max(0f, min(1f, value))
         }
     }
 }

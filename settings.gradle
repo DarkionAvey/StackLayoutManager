@@ -1,3 +1,4 @@
 include ':stacklayoutmanager'
 include ':app'
 rootProject.name = "StackLayoutManager"
+include ':stacklayoutmanager-extras'

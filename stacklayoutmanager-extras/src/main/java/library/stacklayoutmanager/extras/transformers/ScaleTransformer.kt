@@ -1,11 +1,16 @@
-package net.darkion.stacklayoutmanager.demo.transformers
+package library.stacklayoutmanager.extras.transformers
 
 import android.graphics.Path
 import android.view.View
-import net.darkion.stacklayoutmanager.demo.layoutinterpolators.FreePathInterpolator
-import net.darkion.stacklayoutmanager.library.StackLayoutManager
+import library.StackLayoutManager
+import library.stacklayoutmanager.extras.layoutinterpolators.FreePathInterpolator
 
-object ScaleInOnlyTransformer {
+/**
+ * This transformer scales the view during entry and exit
+ *
+ * Preview: https://raw.githubusercontent.com/DarkionAvey/StackLayoutManager/master/Showcase/gifs/scale_in_out.webp
+ */
+object ScaleTransformer {
     private val scalePath =
         FreePathInterpolator(
             Path().apply {
@@ -16,7 +21,7 @@ object ScaleInOnlyTransformer {
 
     fun transform(x: Float, v: View, stackLayoutManager: StackLayoutManager) {
         StackLayoutManager.ElevationTransformer.transform(x, v, stackLayoutManager)
-        val scale = if (x <= 0f) 1f else scalePath.getInterpolation(1f - kotlin.math.abs(x))
+        val scale = if (x == 0f) 1f else scalePath.getInterpolation(1f - kotlin.math.abs(x))
         v.scaleX = scale
         v.scaleY = scale
     }

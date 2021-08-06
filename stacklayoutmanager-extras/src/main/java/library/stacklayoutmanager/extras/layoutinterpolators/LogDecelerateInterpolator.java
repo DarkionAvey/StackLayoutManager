@@ -1,7 +1,12 @@
-package net.darkion.stacklayoutmanager.demo.layoutinterpolators;
+package library.stacklayoutmanager.extras.layoutinterpolators;
 
 import android.animation.TimeInterpolator;
 
+/**
+ * Standard ease out interpolator from Launcher3 package
+ * <p>
+ * Preview: https://raw.githubusercontent.com/DarkionAvey/StackLayoutManager/master/Showcase/gifs/log_decelerate_60_interpolator.webp
+ */
 public class LogDecelerateInterpolator implements TimeInterpolator {
     private final float mBase;
     private final float mDrift;
@@ -11,7 +16,7 @@ public class LogDecelerateInterpolator implements TimeInterpolator {
     public LogDecelerateInterpolator(float base, int drift) {
         mBase = base;
         mDrift = drift;
-        mTimeScale = 1f / 1f;
+        mTimeScale = 1f;
         mOutputScale = 1f / computeLog(1f);
     }
 

@@ -1,21 +1,28 @@
-package net.darkion.stacklayoutmanager.demo.layoutinterpolators
+package library.stacklayoutmanager.extras.layoutinterpolators
 
 import android.content.res.Resources
 import android.graphics.Path
+import android.os.Build
 import android.util.TypedValue
 import android.view.View
 import android.view.animation.LinearInterpolator
-import net.darkion.stacklayoutmanager.library.StackLayoutManager
-import kotlin.math.abs
+import library.StackLayoutManager
+import kotlin.math.max
+
+/**
+ * This interpolator draws views in reverse
+ *
+ * Preview: https://raw.githubusercontent.com/DarkionAvey/StackLayoutManager/master/Showcase/gifs/reverse_interpolator.webp
+ */
 
 class ReverseStackInterpolator : LinearInterpolator() {
-    val path = FreePathInterpolator(Path().apply {
+    private val path = FreePathInterpolator(Path().apply {
         moveTo(0f, 0.9f)
         lineTo(1f, 0.95f)
         lineTo(2f, 3f)
     })
 
-    object Transformer {
+    object ReverseStackTransformer {
         private val maxTranslationZ by lazy {
             TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
@@ -25,23 +32,14 @@ class ReverseStackInterpolator : LinearInterpolator() {
         }
 
         fun transform(x: Float, v: View, stackLayoutManager: StackLayoutManager) {
-            v.elevation = maxTranslationZ
-            v.translationZ = (1f-x) * 2f
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                v.elevation = maxTranslationZ
+                v.translationZ = (1f - x) * 2f
+            }
         }
     }
 
-    private fun mapRange(value: Float, min: Float, max: Float): Float {
-        return min + value * (max - min)
-    }
-
     override fun getInterpolation(input: Float): Float {
-//        var input = input
-//        val x = 1f - input
-        if (input < 0f) return path.getInterpolation(1f - abs(input))
-//        //  if (x > 0f) return 1f
-//        return 1f + input
-
-        if (input < 1f) return mapRange(input,0.95f,1f)
-        return input
+        return max((0.95f + input * 0.05f).coerceAtLeast(0.95f), input)
     }
 }

@@ -1,12 +1,15 @@
-package net.darkion.stacklayoutmanager.demo.transformers
+package library.stacklayoutmanager.extras.transformers
 
 import android.graphics.Path
 import android.view.View
-import net.darkion.stacklayoutmanager.demo.layoutinterpolators.FreePathInterpolator
-import net.darkion.stacklayoutmanager.library.StackLayoutManager
+import library.StackLayoutManager
+import library.stacklayoutmanager.extras.layoutinterpolators.FreePathInterpolator
 
-//this transformer gives the same effect
-//as the Shazam android app (an old version, global chart cards)
+/**
+ * This transformer gives the same effect as the Shazam android app (an old version, global chart cards)
+ *
+ * Preview: https://raw.githubusercontent.com/DarkionAvey/StackLayoutManager/master/Showcase/gifs/scale_out_transform.webp
+ */
 object ScaleOutOnlyTransformer {
     private val scalePath =
         FreePathInterpolator(

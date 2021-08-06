@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.ViewOutlineProvider
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.ColorUtils
-import net.darkion.stacklayoutmanager.library.StackLayoutManager
+import library.StackLayoutManager
 
 
 //this view demonstrates how to use the
